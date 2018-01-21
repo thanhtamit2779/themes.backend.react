@@ -23,6 +23,25 @@ export const fetch_terms = () => {
     }  
 }
 
+/*=======================================================================
+| TERM QUICK VIEW 
+| =======================================================================
+*/
+export const quick_view_terms = (terms) => {
+    return {
+        type : TYPE.FETCH_QUICK_VIEW_TERM,
+        terms
+    }
+}
+
+export const fetch_quick_view_terms = () => {
+    return (dispatch) => {
+        return request_api('term/quickview').then(response => {
+            dispatch(quick_view_terms(response.data.data));
+        });
+    }  
+}
+
 /*======================================================================
 | TERM ADD 
 | =======================================================================
@@ -42,3 +61,21 @@ export const add_term_request = (term) => {
     }
 }
 
+/*======================================================================
+| TERM DELETE 
+| =======================================================================
+*/
+export const delete_term = term_delete => {
+    return {
+        type : TYPE.DELETE_TERM,
+        term_delete
+    }
+}
+
+export const delete_term_request = (term_id) => {
+    return (dispatch) => {
+        return request_api(`term/trash/${term_id}`, null, 'delete').then(function(response) {
+            dispatch(delete_term(response.data)); 
+        });
+    }
+}

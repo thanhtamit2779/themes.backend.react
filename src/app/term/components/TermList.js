@@ -4,11 +4,18 @@ import { NavLink } from 'react-router-dom' ;
 
 // LIB
 import * as _ from 'lodash';
+import { Button } from 'react-bootstrap';
 
 // CONFIG
 import { TERM_TYPE } from './../configs/term_type';
 
 class TermList extends Component {
+
+  // handleClick
+  handleClick = term_id => {
+    this.props.handleClick(term_id);
+  }
+
   loadTableHead = () => {
     return (
         <thead>
@@ -39,7 +46,6 @@ class TermList extends Component {
 
     result = terms.map( (term, key) => {
         let link_update_status = `/term/update-status/${term.term_id}`;
-        let link_delete        = `/term/delete/${term.term_id}`;
         let link_edit          = `/term/edit/${term.term_id}`;
         let term_type          = '';
 
@@ -67,9 +73,9 @@ class TermList extends Component {
                     <NavLink to={ link_edit } className="mar-5">
                         <small className="label bg-green"><i className="fa fa-edit"></i></small>
                     </NavLink>
-                    <NavLink to={ link_delete } className="mar-5">
-                        <small className="label bg-red"><i className="fa fa-trash-o"></i></small>
-                    </NavLink>
+                    <Button id="update" bsSize="xsmall" bsStyle="link" onClick={ () => this.handleClick(term.term_id) }>
+                        <small className="label bg-red"><i className="fa fa-trash-o"></i></small> 
+                    </Button>
                 </td>
             </tr>
         )
@@ -81,6 +87,7 @@ class TermList extends Component {
         </tbody>
     ) 
   }
+
 
   render() {
     return (

@@ -3,11 +3,14 @@ import React, { Component } from 'react';
 // REDUX
 import { connect } from 'react-redux';
 
+// LIBS
+import * as _ from 'lodash';
+
 // COMPONENTS
 import TermAdd from './../components/TermAdd';
 
 // ACTION
-import { add_term_request, fetch_terms } from './../actions/index';
+import { add_term_request, fetch_quick_view_terms } from './../actions/index';
 
 // CONFIG
 import { TERM_TYPE_DEFAULT } from './../configs/term_type';
@@ -16,7 +19,7 @@ class TermAddContainer extends Component {
 
   constructor(props) {
     super(props);
-    this.props.fetch_terms();
+    this.props.fetch_quick_view_terms();
     this.state = {
         term_name        : '' ,
         term_description : '' ,
@@ -48,9 +51,9 @@ class TermAddContainer extends Component {
   }
 
   render() {  
-    let { terms } = this.props;
+    let { quick_terms } = this.props;
+    let terms         = _.get(quick_terms, 'quick_terms');
     let form      = this.state;
-
     return (
       <TermAdd terms={ terms } handleSubmit={ this.handleSubmit } form={ form } handleChange={ this.handleChange } />
     )
@@ -59,14 +62,14 @@ class TermAddContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    terms: state.terms
+    quick_terms: state.terms
   }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
-      fetch_terms : terms => {
-        dispatch(fetch_terms());
+      fetch_quick_view_terms : () => {
+        dispatch(fetch_quick_view_terms());
       },
       add_term    : term => {
         dispatch(add_term_request(term));
