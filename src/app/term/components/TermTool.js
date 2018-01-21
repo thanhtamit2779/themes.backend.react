@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { NavLink } from 'react-router-dom' ;
 
+import { Button } from 'react-bootstrap';
+
 class TermTool extends Component {
     render() {
         return ( 
@@ -12,15 +14,13 @@ class TermTool extends Component {
                         <i className="fa fa-plus"></i><span> THÊM </span>
                     </NavLink>
                     
-                    { /* XÓA */ } 
-                    <button type="button" className="btn bg-maroon btn-flat" id="delete" >
-                        <i className="fa fa-trash-o"></i><span> XÓA </span>
-                    </button >
+                    { /* XÓA */ }
+                    <Button bsClass="btn bg-maroon btn-flat" id="delete" ><i className="fa fa-trash-o"></i><span> XÓA </span></Button> 
 
                     { /* CẬP NHẬT */ } 
-                    <button type="button" className="btn bg-olive btn-flat" id="update" >
+                    <Button bsClass="btn bg-olive btn-flat" id="update" >
                         <i className="fa fa-check"></i><span > CẬP NHẬT </span> 
-                    </button>
+                    </Button>
                 </div>
             </div>
         )
