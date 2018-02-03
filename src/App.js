@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 
+/* CSS */
+import 'react-notifications/lib/notifications.css';
+
+/* LIBS */
+import { NotificationContainer } from 'react-notifications';
+
 /* INCLUDE */
 import Header from './include/Header';
 import SidebarLeft from './include/SidebarLeft';
@@ -17,6 +23,7 @@ class App extends Component {
         <Footer/>
         <SidebarRight/>
         <div className="control-sidebar-bg"></div>
+        <NotificationContainer/>
       </div>
     );
   }
