@@ -12,18 +12,26 @@ import App from './App';
 // REACT - REDUX
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+import { combineReducers } from 'redux';      
 import registerServiceWorker from './registerServiceWorker';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 // REDUCERS
-import TERM_REDUCERS from './app/term/reducers/index';
+import term_index from './app/term/reducers/index';
+import term_add from './app/term/reducers/add';
+
+const rootReducer = combineReducers({
+    term_index,
+    term_add,
+    // term_edit
+});
 
 const loggerMiddleware = createLogger();
 
 const store = createStore(
-    TERM_REDUCERS, 
+    rootReducer, 
     composeWithDevTools(
         applyMiddleware(
             thunk,
