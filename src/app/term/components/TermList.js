@@ -5,15 +5,16 @@ import { NavLink } from 'react-router-dom' ;
 // LIB
 import * as _ from 'lodash';
 import { Button } from 'react-bootstrap';
+import Pagination from "react-js-pagination";
 
 // CONFIG
 import { TERM_TYPE } from './../configs/term_type';
 
 class TermList extends Component {
 
-  // handleClick
-  handleClick = term_id => {
-    this.props.handleClick(term_id);
+  // DELETE
+  onDelete = term_id => {
+    this.props.onDelete(term_id);
   }
 
   loadTableHead = () => {
@@ -32,8 +33,14 @@ class TermList extends Component {
   }
 
   loadTableFoot = () => {
+    let {page, total, per_page } = this.props;
     return (
         <tfoot>
+            <Pagination
+                activePage={page}
+                itemsCountPerPage={per_page}
+                totalItemsCount={total}
+                pageRangeDisplayed={5} />
         </tfoot>
     )
   }
@@ -73,7 +80,7 @@ class TermList extends Component {
                     <NavLink to={ link_edit } className="mar-5">
                         <small className="label bg-green"><i className="fa fa-edit"></i></small>
                     </NavLink>
-                    <Button id="update" bsSize="xsmall" bsStyle="link" onClick={ () => this.handleClick(term.term_id) }>
+                    <Button id="update" bsSize="xsmall" bsStyle="link" onClick={ () => this.onDelete(term.term_id) }>
                         <small className="label bg-red"><i className="fa fa-trash-o"></i></small> 
                     </Button>
                 </td>
@@ -87,7 +94,6 @@ class TermList extends Component {
         </tbody>
     ) 
   }
-
 
   render() {
     return (

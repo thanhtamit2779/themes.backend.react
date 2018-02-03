@@ -14,19 +14,45 @@ import TermTool       from './../components/TermTool';
 // ACTION
 import { fetch_terms, delete_term_request } from './../actions/index';
 
+// HELPER
+import notification from './../../../helper/message';
+
+// CODE
+const per_page = 5;
+
 class TermIndexContainer extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   componentDidMount() {
-    this.props.fetch_terms();
+    this.setState(this.props.fetch_terms({
+      per_page
+    })) ;
+  }
+
+  // DISPLAY NOTIFICATION
+  componentWillReceiveProps(nextProps) {
+    let message = nextProps.notification;
+
+    if( _.isEmpty(message)) return false;
+    notification(message);
+
+    if(message.status === 1) { 
+      this.setState(this.props.fetch_terms({
+        per_page
+      })) ;
+    }
   }
 
   render() {  
-    let { data, delete_term} = this.props;
-    
-    let index        = data.index;
+    let { items, delete_term } = this.props;
+
+    let index        = items;
     let page         = _.get(index, 'page');
     let total        = _.get(index, 'total');
-    let total_page   = _.get(index, 'total_page');
     let terms        = _.get(index, 'items');
     
     return (
@@ -39,8 +65,8 @@ class TermIndexContainer extends Component {
             </div>
             <br/>
             <div className="box-body table-responsive no-padding">      
-              <TermFormFilter />        
-              <TermList terms={terms} handleClick={delete_term}/>
+              <TermFormFilter/>        
+              <TermList terms={terms} onDelete={delete_term} page={page} total={total} per_page={per_page} />
             </div>
           </div>
         </div>
@@ -49,9 +75,10 @@ class TermIndexContainer extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    data: state.terms
+    items         : state.term_index.items,
+    notification  : state.term_index.notification
   }
 }
 
@@ -60,8 +87,8 @@ const mapDispatchToProps = (dispatch, props) => {
     delete_term : term_id => {
         dispatch(delete_term_request(term_id));
     },
-    fetch_terms : () => {
-      dispatch(fetch_terms());
+    fetch_terms : (data = null) => {
+      dispatch(fetch_terms(data));
     }
   }
 }

@@ -9,7 +9,7 @@ import { ARRAY_TERM_TYPE } from './../configs/term_type';
 
 class TermAdd extends Component {
     getTerms = (terms) => {
-        if(_.isEmpty(terms)) return false;        
+        if( _.isEmpty(terms) === true ) return false;        
         return terms.map( (term, key) => {
             // LẤY DANH SÁCH TERM => KHÔNG LẤY THÔNG BÁO TRẢ VỀ KHI THÊM XÓA SỬA
             if(_.isEmpty(term.term_id) === false) {            
@@ -33,11 +33,10 @@ class TermAdd extends Component {
         
         return result;
     }
-
+    
     render() {
-
-        let { handleSubmit, form, handleChange, terms }  = this.props;
-
+        let { handleSubmit, form, handleChangeEvent, terms }  = this.props;
+    
         return (
             <div className="row">
                 <div className="col-sm-12">
@@ -47,14 +46,13 @@ class TermAdd extends Component {
                         </div>
                         <Form horizontal>
                             <div className="box-body">
-
                                 {/* TÊN DANH MỤC */}
                                 <FormGroup controlId="term-name">
                                     <Col componentClass={ControlLabel} sm={2}>
                                         Tên danh mục
                                     </Col>
                                     <Col sm={10}>
-                                        <FormControl type="text" placeholder="Nhập tên danh mục..." value={form.term_name} onChange={handleChange} name="term_name"/>
+                                        <FormControl type="text" placeholder="Nhập tên danh mục..." value={form.term_name} onChange={handleChangeEvent} name="term_name"/>
                                     </Col>
                                 </FormGroup>
                                 
@@ -62,7 +60,7 @@ class TermAdd extends Component {
                                 <FormGroup controlId="term-description">
                                     <Col componentClass={ControlLabel} sm={2}>Mô tả</Col>
                                     <Col sm={10}>
-                                        <FormControl componentClass="textarea" placeholder="Nhập mô tả..." value={form.term_description} onChange={handleChange} name="term_description" />
+                                        <FormControl componentClass="textarea" placeholder="Nhập mô tả..." value={form.term_description} onChange={handleChangeEvent} name="term_description" />
                                     </Col>
                                 </FormGroup>
 
@@ -70,7 +68,7 @@ class TermAdd extends Component {
                                 <FormGroup controlId="term-type" >
                                     <Col componentClass={ControlLabel} sm={2}>Loại</Col>
                                     <Col sm={10}>
-                                        <FormControl componentClass="select" name="term_type" value={form.term_type} onChange={handleChange} >
+                                        <FormControl componentClass="select" name="term_type" value={form.term_type} onChange={handleChangeEvent} >
                                             {this.getTermType()}
                                         </FormControl>
                                     </Col>
@@ -80,7 +78,7 @@ class TermAdd extends Component {
                                 <FormGroup controlId="term-parent" >
                                     <Col componentClass={ControlLabel} sm={2}>Danh mục cha</Col>
                                     <Col sm={10}>
-                                        <FormControl componentClass="select" name="term_parent" value={form.term_parent} onChange={handleChange} >
+                                        <FormControl componentClass="select" name="term_parent" value={form.term_parent} onChange={handleChangeEvent} >
                                             <option value={0}>--- Không ---</option>
                                             {this.getTerms(terms)}
                                         </FormControl>
@@ -91,7 +89,7 @@ class TermAdd extends Component {
                                 <FormGroup controlId="term-status" >
                                     <Col componentClass={ControlLabel} sm={2}>Trạng thái</Col>
                                     <Col sm={10}>
-                                        <FormControl componentClass="select" name="term_status" value={form.term_status} onChange={handleChange} >
+                                        <FormControl componentClass="select" name="term_status" value={form.term_status} onChange={handleChangeEvent} >
                                             <option value="publish">Hiển thị</option>
                                             <option value="unpublish">Tắt</option>
                                         </FormControl>

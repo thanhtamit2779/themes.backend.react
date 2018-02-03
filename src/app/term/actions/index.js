@@ -3,7 +3,6 @@ import * as TYPE from './../contants/action_type';
 // HELPER
 import request_api from './../../../helper/api';
 
-
 /*======================================================================
 | TERM LIST 
 | =======================================================================
@@ -15,9 +14,9 @@ export const get_terms = terms => {
     }
 }
 
-export const fetch_terms = () => {
+export const fetch_terms = (data) => {
     return (dispatch) => {
-        return request_api('term/index').then(response => {
+        return request_api('term/index', data).then(response => {
             dispatch(get_terms(response.data.data));
         });
     }  
@@ -56,7 +55,7 @@ export const add_term = term_add => {
 export const add_term_request = (term) => {
     return (dispatch) => {
         return request_api('term/form', term).then(function(response) {
-            dispatch(add_term(response.data)); 
+            return dispatch(add_term(response.data)); 
         });
     }
 }
