@@ -43,7 +43,6 @@ class TermAddContainer extends Component {
     let message = nextProps.notification;
     if( _.isEmpty(message)) return false;
     notification(message);
-    return <Redirect from='/term/add' to='/term/index'/>;
   }
 
   handleChangeEvent = event => {
@@ -69,7 +68,7 @@ class TermAddContainer extends Component {
   }
   
   render() {  
-    let { items } = this.props;
+    let { items }       = this.props;
     let form            = this.state;
     return (
       <TermAdd terms={ items } handleSubmit={ this.handleSubmit } form={ form } handleChangeEvent={ this.handleChangeEvent } />

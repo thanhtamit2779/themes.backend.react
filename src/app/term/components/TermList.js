@@ -33,7 +33,11 @@ class TermList extends Component {
   }
 
   loadTableFoot = () => {
-    let { active_page, total, per_page, onPagination } = this.props;
+    let { active_page, total, per_page, total_page, onPagination } = this.props;
+
+    if(total_page === 1) return false;
+    if(_.isEmpty(total_page)) return false;
+
     return (
         <div className="row-pagination">
             <div className="col-sm-12">

@@ -21,6 +21,9 @@ import notification from './../../../helper/message';
 const per_page      = 5;
 const active_page   = 1;
 const keyword       = '';
+const term_name     = '';
+const term_status   = '';
+const term_type     = '';
 
 class TermIndexContainer extends Component {
 
@@ -28,7 +31,9 @@ class TermIndexContainer extends Component {
     super(props);
     this.state = {
       active_page,
-      keyword
+      term_name,
+      term_status,
+      term_type
     };
   }
 
@@ -56,24 +61,56 @@ class TermIndexContainer extends Component {
 
   // PAGINATION
   handlePagination = (page) => {
-    return this.setState(
-      _.merge({active_page: page}, this.props.fetch_terms({
-        per_page,
-        page
-      })) 
+    this.setState(
+      _.merge(
+        {active_page: page}, 
+        this.props.fetch_terms({
+          per_page,
+          page
+        })
+      ) 
     );
   } 
 
-  // SEARCH KEYWORD
-  handle
+  // FILTER
+  handleChangeEvent = event => {
+    var target = event.target;
+    var name   = target.name;
+    var value  = target.value;
+    this.setState({
+        [name]: value
+    });
+  } 
+
+  // SUBMIT FILTER
+  handleSubmit = event => {
+    event.preventDefault();
+
+    let terms = this.props.fetch_terms({
+      per_page,
+      page : 1,
+      term_name: this.state.term_name, 
+      term_type: this.state.term_type, 
+      term_status: this.state.term_status, 
+    });
+
+    this.setState(
+      _.merge(
+          { active_page: 1 }, 
+          terms
+      ) 
+    );
+  }
 
   // RENDER
   render() {  
     let { items, delete_term, fetch_terms } = this.props;
     let { active_page } = this.state;
+    let form            = this.state;
 
     let index        = items;
     let total        = _.get(index, 'total');
+    let total_page   = _.get(index, 'total_page');
     let terms        = _.get(index, 'terms');
     
     return (
@@ -86,12 +123,17 @@ class TermIndexContainer extends Component {
             </div>
             <br/>
             <div className="box-body table-responsive no-padding">      
-              <TermFormFilter/>        
+              <TermFormFilter 
+                handleSubmit={ this.handleSubmit } 
+                form={ form } 
+                handleChangeEvent={ this.handleChangeEvent } /> 
+
               <TermList 
                 terms={terms} 
                 onDelete={delete_term} 
                 active_page={active_page} 
                 total={total} 
+                total_page={total_page}
                 per_page={per_page} 
                 onPagination={ this.handlePagination } />
             </div>
