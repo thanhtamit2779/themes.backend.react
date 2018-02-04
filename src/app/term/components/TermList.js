@@ -21,8 +21,8 @@ class TermList extends Component {
     return (
         <thead>
             <tr>
-                <th><input type="checkbox" className="flat-red" /></th>
-                <th>STT</th>
+                <th style={ {width: '50px'} }><input type="checkbox" className="flat-red" /></th>
+                <th style={ {width: '50px'} }>STT</th>
                 <th>NAME</th>
                 <th>TYPE</th>
                 <th>STATUS</th>
@@ -33,15 +33,21 @@ class TermList extends Component {
   }
 
   loadTableFoot = () => {
-    let {page, total, per_page } = this.props;
+    let { active_page, total, per_page, onPagination } = this.props;
     return (
-        <tfoot>
-            <Pagination
-                activePage={page}
-                itemsCountPerPage={per_page}
-                totalItemsCount={total}
-                pageRangeDisplayed={5} />
-        </tfoot>
+        <div className="row-pagination">
+            <div className="col-sm-12">
+                <Pagination
+                    activePage={active_page}
+                    itemsCountPerPage={per_page}
+                    totalItemsCount={total}
+                    pageRangeDisplayed={5} 
+                    onChange={ onPagination }
+                    activeClass="active"
+                    activeLinkClass="active"
+                />
+            </div>    
+        </div>
     )
   }
 
@@ -97,11 +103,13 @@ class TermList extends Component {
 
   render() {
     return (
-        <table id="mainTable" className="table table-striped js-basic-example dataTable">
-            { this.loadTableHead() }
-            { this.loadTableBody(this.props.terms) }
+        <React.Fragment>
+            <table id="mainTable" className="table table-striped js-basic-example dataTable">
+                { this.loadTableHead() }
+                { this.loadTableBody(this.props.terms) }
+            </table>
             { this.loadTableFoot() }
-        </table>
+        </React.Fragment>
     )
   }
 }

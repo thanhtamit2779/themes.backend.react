@@ -18,15 +18,21 @@ import { fetch_terms, delete_term_request } from './../actions/index';
 import notification from './../../../helper/message';
 
 // CODE
-const per_page = 5;
+const per_page      = 5;
+const active_page   = 1;
+const keyword       = '';
 
 class TermIndexContainer extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      active_page,
+      keyword
+    };
   }
 
+  // FETCH API
   componentDidMount() {
     this.setState(this.props.fetch_terms({
       per_page
@@ -45,15 +51,30 @@ class TermIndexContainer extends Component {
         per_page
       })) ;
     }
+    return false;
   }
 
+  // PAGINATION
+  handlePagination = (page) => {
+    return this.setState(
+      _.merge({active_page: page}, this.props.fetch_terms({
+        per_page,
+        page
+      })) 
+    );
+  } 
+
+  // SEARCH KEYWORD
+  handle
+
+  // RENDER
   render() {  
-    let { items, delete_term } = this.props;
+    let { items, delete_term, fetch_terms } = this.props;
+    let { active_page } = this.state;
 
     let index        = items;
-    let page         = _.get(index, 'page');
     let total        = _.get(index, 'total');
-    let terms        = _.get(index, 'items');
+    let terms        = _.get(index, 'terms');
     
     return (
       <div className="row">
@@ -66,7 +87,13 @@ class TermIndexContainer extends Component {
             <br/>
             <div className="box-body table-responsive no-padding">      
               <TermFormFilter/>        
-              <TermList terms={terms} onDelete={delete_term} page={page} total={total} per_page={per_page} />
+              <TermList 
+                terms={terms} 
+                onDelete={delete_term} 
+                active_page={active_page} 
+                total={total} 
+                per_page={per_page} 
+                onPagination={ this.handlePagination } />
             </div>
           </div>
         </div>
@@ -87,7 +114,7 @@ const mapDispatchToProps = (dispatch, props) => {
     delete_term : term_id => {
         dispatch(delete_term_request(term_id));
     },
-    fetch_terms : (data = null) => {
+    fetch_terms : (data) => {
       dispatch(fetch_terms(data));
     }
   }

@@ -14,7 +14,7 @@ const term_index = (state = {
       case TYPE.DELETE_TERM:
         return Object.assign({}, state, {
             notification: action.term_delete,
-            items       : action.terms,
+            items       : [],
         });
       default:
         return state;
