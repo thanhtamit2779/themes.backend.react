@@ -18,14 +18,12 @@ const term_index = (state = {
             });
 
         case TYPE.PUBLISH_TERM:
-            console.log(action.term_unpublish);
             return Object.assign({}, state, {
                 notification: action.term_publish,
                 items       : [],
             });
             
         case TYPE.UNPUBLISH_TERM:
-            console.log(action.term_unpublish);
             return Object.assign({}, state, {
                 notification: action.term_unpublish,
                 items       : [],

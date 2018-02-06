@@ -41,7 +41,7 @@ class TermIndexContainer extends Component {
   componentDidMount() {
     this.setState(this.props.fetch_terms({
       per_page    : per_page,
-      active_page : this.state.active_page
+      active_page : active_page
     })) ;
   }
 
@@ -100,7 +100,7 @@ class TermIndexContainer extends Component {
 
     this.setState(
       _.merge(
-          { active_page: 1 }, 
+          { active_page: active_page }, 
           terms
       ) 
     );
