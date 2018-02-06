@@ -17,16 +17,26 @@ class TermList extends Component {
     this.props.onDelete(term_id);
   }
 
+  // PUBLISH
+  onPublish = term_id => {
+    this.props.onPublish(term_id);
+  }
+
+  // UNPUBLISH
+  onUnPublish = term_id => {
+    this.props.onUnPublish(term_id);
+  }
+
   loadTableHead = () => {
     return (
         <thead>
             <tr>
-                <th style={ {width: '50px'} }><input type="checkbox" className="flat-red" /></th>
                 <th style={ {width: '50px'} }>STT</th>
                 <th>NAME</th>
                 <th>TYPE</th>
                 <th>STATUS</th>
                 <th>ACTION</th>
+                <th style={ {width: '50px'} }><input type="checkbox" className="flat-red" /></th>
             </tr>
         </thead>
     )
@@ -36,7 +46,7 @@ class TermList extends Component {
     let { active_page, total, per_page, total_page, onPagination } = this.props;
 
     if(total_page === 1) return false;
-    if(_.isEmpty(total_page)) return false;
+    //if(_.isEmpty(total_page)) return false;
 
     return (
         <div className="row-pagination">
@@ -60,10 +70,17 @@ class TermList extends Component {
 
     var result = [];
     var stt    = 1;
-
     result = terms.map( (term, key) => {
-        let link_update_status = `/term/update-status/${term.term_id}`;
+        if(term.term_status === 'unpublish') {
+            var link_update_status = (<Button id="term-status" bsSize="xsmall" bsStyle="link" onClick={ () => this.onPublish(term.term_id) }><small className="label bg-red">{ term.term_status }</small></Button>); 
+        }
+        else if(term.term_status === 'publish') {
+            var link_update_status = (<Button id="term-status" bsSize="xsmall" bsStyle="link" onClick={ () => this.onUnPublish(term.term_id) }><small className="label bg-green">{ term.term_status }</small></Button>); 
+        }
+
         let link_edit          = `/term/edit/${term.term_id}`;
+        let item_id            = `item-${term.term_id}`;
+        let item_name          = `items[${term.term_id}]`;
         let term_type          = '';
 
         if(_.isEmpty(TERM_TYPE) === false) {
@@ -75,25 +92,23 @@ class TermList extends Component {
         }
         return (
             <tr key={key}>
-                <td><input type="checkbox" className="flat-red" value={term.term_id}/></td>
                 <td>{ stt++ }</td>
                 <td>{ term.term_name }</td>
                 <td>
                     { term_type }
                 </td>
                 <td>
-                    <NavLink to={ link_update_status }>
-                        <small className="label bg-green">{ term.term_status }</small>
-                    </NavLink>
+                    { link_update_status }
                 </td>
                 <td>
                     <NavLink to={ link_edit } className="mar-5">
                         <small className="label bg-green"><i className="fa fa-edit"></i></small>
                     </NavLink>
-                    <Button id="update" bsSize="xsmall" bsStyle="link" onClick={ () => this.onDelete(term.term_id) }>
+                    <Button id="delete" bsSize="xsmall" bsStyle="link" onClick={ () => this.onDelete(term.term_id) }>
                         <small className="label bg-red"><i className="fa fa-trash-o"></i></small> 
                     </Button>
                 </td>
+                <td><input type="checkbox" className="flat-red" name={item_name} value={term.term_id} id={item_id} /></td>
             </tr>
         )
     })

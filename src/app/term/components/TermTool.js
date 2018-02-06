@@ -10,16 +10,20 @@ class TermTool extends Component {
             <div className="box-tools">
                 <div className="col-sm-12 text-right">
                     { /* THÊM */ }                   
-                    <NavLink to='/term/add' className="btn btn-primary btn-flat" id="add">
+                    <NavLink to='/term/add' className="btn btn-primary btn-flat btn-sm" id="add">
                         <i className="fa fa-plus"></i><span> THÊM </span>
                     </NavLink>
                     
                     { /* XÓA */ }
-                    <Button bsClass="btn bg-maroon btn-flat" id="delete" ><i className="fa fa-trash-o"></i><span> XÓA </span></Button> 
+                    <Button bsClass="btn bg-maroon btn-flat btn-sm" id="delete" ><i className="fa fa-trash-o"></i><span> XÓA </span></Button> 
 
-                    { /* CẬP NHẬT */ } 
-                    <Button bsClass="btn bg-olive btn-flat" id="update" >
-                        <i className="fa fa-check"></i><span > CẬP NHẬT </span> 
+                    { /* PUBLISH */ } 
+                    <Button bsClass="btn bg-olive btn-flat btn-sm" id="publish" >
+                        <i className="fa fa-check"></i><span > PUBLISH </span> 
+                    </Button>
+                    { /* UNPUBLISH */ } 
+                    <Button bsClass="btn bg-maroon btn-flat btn-sm" id="unpublish" >
+                        <i className="fa fa-check"></i><span > UNPUBLISH </span> 
                     </Button>
                 </div>
             </div>

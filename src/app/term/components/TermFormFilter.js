@@ -45,8 +45,8 @@ class TermFormFilter extends Component {
               <div className="form-line">
                 <FormControl componentClass="select" id="term-status" name="term_status" value={form.term_status} onChange={handleChangeEvent} bsClass="form-control show-tick">
                   <option value="">--- Tình trạng ---</option>
-                  <option value="publish">Publish</option>
-                  <option value="unpulish">Unpublish</option>
+                  <option value="publish">Hiển thị</option>
+                  <option value="unpublish">Ẩn</option>
                 </FormControl>
               </div>
             </FormGroup> 

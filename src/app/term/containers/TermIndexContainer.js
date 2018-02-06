@@ -12,12 +12,12 @@ import TermList       from './../components/TermList';
 import TermTool       from './../components/TermTool';
 
 // ACTION
-import { fetch_terms, delete_term_request } from './../actions/index';
+import { fetch_terms, delete_term_request, publish_term_request, unpublish_term_request } from './../actions/index';
 
 // HELPER
 import notification from './../../../helper/message';
 
-// CODE
+// DEFINE
 const per_page      = 5;
 const active_page   = 1;
 const keyword       = '';
@@ -40,7 +40,8 @@ class TermIndexContainer extends Component {
   // FETCH API
   componentDidMount() {
     this.setState(this.props.fetch_terms({
-      per_page
+      per_page    : per_page,
+      active_page : this.state.active_page
     })) ;
   }
 
@@ -53,20 +54,23 @@ class TermIndexContainer extends Component {
 
     if(message.status === 1) { 
       this.setState(this.props.fetch_terms({
-        per_page
+        per_page    : per_page,
+        active_page : this.state.active_page
       })) ;
     }
-    return false;
   }
 
   // PAGINATION
   handlePagination = (page) => {
     this.setState(
       _.merge(
-        {active_page: page}, 
+        { active_page: page }, 
         this.props.fetch_terms({
-          per_page,
-          page
+          per_page    : per_page,
+          page        : page,
+          term_name: this.state.term_name, 
+          term_type: this.state.term_type, 
+          term_status: this.state.term_status, 
         })
       ) 
     );
@@ -87,7 +91,7 @@ class TermIndexContainer extends Component {
     event.preventDefault();
 
     let terms = this.props.fetch_terms({
-      per_page,
+      per_page : per_page,
       page : 1,
       term_name: this.state.term_name, 
       term_type: this.state.term_type, 
@@ -104,7 +108,7 @@ class TermIndexContainer extends Component {
 
   // RENDER
   render() {  
-    let { items, delete_term, fetch_terms } = this.props;
+    let { items, delete_term, fetch_terms, publish_term, unpublish_term } = this.props;
     let { active_page } = this.state;
     let form            = this.state;
 
@@ -131,6 +135,8 @@ class TermIndexContainer extends Component {
               <TermList 
                 terms={terms} 
                 onDelete={delete_term} 
+                onPublish={publish_term}
+                onUnPublish={unpublish_term} 
                 active_page={active_page} 
                 total={total} 
                 total_page={total_page}
@@ -154,8 +160,17 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, props) => {
   return {
     delete_term : term_id => {
-        dispatch(delete_term_request(term_id));
+      dispatch(delete_term_request(term_id));
     },
+
+    publish_term : term_id => {
+      dispatch(publish_term_request(term_id));
+    },
+
+    unpublish_term : term_id => {
+      dispatch(unpublish_term_request(term_id));
+    },
+
     fetch_terms : (data) => {
       dispatch(fetch_terms(data));
     }

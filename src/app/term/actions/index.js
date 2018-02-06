@@ -78,3 +78,41 @@ export const delete_term_request = (term_id) => {
         });
     }
 }
+
+/*======================================================================
+| TERM PUBLISH 
+| =======================================================================
+*/
+export const publish_term = term_publish => {
+    return {
+        type : TYPE.PUBLISH_TERM,
+        term_publish
+    }
+}
+
+export const publish_term_request = (term_id) => {
+    return (dispatch) => {
+        return request_api(`term/publish/${term_id}`, null, 'put').then(function(response) {
+            dispatch(publish_term(response.data)); 
+        });
+    }
+}
+
+/*======================================================================
+| TERM UNPUBLISH 
+| =======================================================================
+*/
+export const unpublish_term = term_unpublish => {
+    return {
+        type : TYPE.UNPUBLISH_TERM,
+        term_unpublish
+    }
+}
+
+export const unpublish_term_request = (term_id) => {
+    return (dispatch) => {
+        return request_api(`term/unpublish/${term_id}`, null, 'put').then(function(response) {
+            dispatch(unpublish_term(response.data)); 
+        });
+    }
+}
