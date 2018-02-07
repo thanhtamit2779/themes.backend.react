@@ -17,6 +17,12 @@ const term_index = (state = {
                 items       : [],
             });
 
+        case TYPE.DELETES_TERM:
+            return Object.assign({}, state, {
+                notification: action.term_deletes,
+                items       : [],
+            });    
+
         case TYPE.PUBLISH_TERM:
             return Object.assign({}, state, {
                 notification: action.term_publish,
@@ -28,6 +34,18 @@ const term_index = (state = {
                 notification: action.term_unpublish,
                 items       : [],
             }); 
+
+        case TYPE.PUBLISHS_TERM:
+            return Object.assign({}, state, {
+                notification: action.term_publishs,
+                items       : [],
+            });
+            
+        case TYPE.UNPUBLISHS_TERM:
+            return Object.assign({}, state, {
+                notification: action.term_unpublishs,
+                items       : [],
+            });     
       default:
         return state;
     }

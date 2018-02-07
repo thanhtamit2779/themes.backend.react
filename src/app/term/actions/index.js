@@ -80,6 +80,25 @@ export const delete_term_request = (term_id) => {
 }
 
 /*======================================================================
+| TERM DELETES 
+| =======================================================================
+*/
+export const deletes_term = term_deletes => {
+    return {
+        type : TYPE.DELETES_TERM,
+        term_deletes
+    }
+}
+
+export const deletes_term_request = (data) => {
+    return (dispatch) => {
+        return request_api(`term/deletes`, data).then(function(response) {
+            dispatch(deletes_term(response.data)); 
+        });
+    }
+}
+
+/*======================================================================
 | TERM PUBLISH 
 | =======================================================================
 */
@@ -113,6 +132,44 @@ export const unpublish_term_request = (term_id) => {
     return (dispatch) => {
         return request_api(`term/unpublish/${term_id}`, null, 'put').then(function(response) {
             dispatch(unpublish_term(response.data)); 
+        });
+    }
+}
+
+/*======================================================================
+| TERM PUBLISHS 
+| =======================================================================
+*/
+export const publishs_term = term_publishs => {
+    return {
+        type : TYPE.PUBLISHS_TERM,
+        term_publishs
+    }
+}
+
+export const publishs_term_request = (data) => {
+    return (dispatch) => {
+        return request_api(`term/publishs`, data).then(function(response) {
+            dispatch(publishs_term(response.data)); 
+        });
+    }
+}
+
+/*======================================================================
+| TERM UNPUBLISHS 
+| =======================================================================
+*/
+export const unpublishs_term = term_unpublishs => {
+    return {
+        type : TYPE.UNPUBLISHS_TERM,
+        term_unpublishs
+    }
+}
+
+export const unpublishs_term_request = (data) => {
+    return (dispatch) => {
+        return request_api(`term/unpublishs`, data).then(function(response) {
+            dispatch(unpublishs_term(response.data)); 
         });
     }
 }

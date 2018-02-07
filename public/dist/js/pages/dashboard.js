@@ -208,11 +208,23 @@ $(function () {
   });
 
    //Flat red color scheme for iCheck
-   $('input[type="checkbox"].flat-red').iCheck({
+   $('.flat-red').iCheck({
     checkboxClass: 'icheckbox_flat-green',
     radioClass   : 'iradio_flat-green'
    });
+});
 
-   $('.textarea').wysihtml5();
 
+$(document).ready(function() {
+  $("#check-all").on('ifChanged ifClicked', function (e) {
+      if (this.checked) {
+        $(".is-checked").each(function() {
+            this.checked=true;
+        });
+      } else {
+        $(".is-checked").each(function() {
+            this.checked=false;
+        });
+      }
+	});
 });

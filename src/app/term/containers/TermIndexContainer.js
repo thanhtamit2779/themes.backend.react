@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 
 // LIBS
 import * as _ from 'lodash';
+import $ from "jquery";
+import axios from 'axios'; 
 
 // CONPONENTS
 import TermFormFilter from './../components/TermFormFilter';
@@ -12,7 +14,14 @@ import TermList       from './../components/TermList';
 import TermTool       from './../components/TermTool';
 
 // ACTION
-import { fetch_terms, delete_term_request, publish_term_request, unpublish_term_request } from './../actions/index';
+import { fetch_terms, 
+         delete_term_request, 
+         deletes_term_request,
+         publish_term_request, 
+         unpublish_term_request,
+         publishs_term_request, 
+         unpublishs_term_request
+} from './../actions/index';
 
 // HELPER
 import notification from './../../../helper/message';
@@ -35,10 +44,13 @@ class TermIndexContainer extends Component {
       term_status,
       term_type
     };
-    this.handlePagination   = this.handlePagination.bind(this);
-    this.handleChangeEvent  = this.handleChangeEvent.bind(this);
-    this.handleSubmit       = this.handleSubmit.bind(this);
+    this.handlePagination     = this.handlePagination.bind(this);
+    this.handleChangeEvent    = this.handleChangeEvent.bind(this);
+    this.handleSubmit         = this.handleSubmit.bind(this);
     this.handleMultiSelected  = this.handleMultiSelected.bind(this);
+    this.handlePublishs       = this.handlePublishs.bind(this);
+    this.handleUnPublishs     = this.handleUnPublishs.bind(this);
+    this.handleTrashs         = this.handleTrashs.bind(this);
   }
 
   // FETCH API
@@ -127,7 +139,30 @@ class TermIndexContainer extends Component {
   }
 
   handleMultiSelected() {
-    console.log(this.refs);
+    if( $('.term-id:checked').length > 0 ) {
+      var term_ids = []; 
+		  $('.term-id').each(function(){
+		    if($(this).is(':checked')) { 
+		      term_ids.push($(this).val());
+		    }
+      });
+      return term_ids;
+    }
+  }
+
+  handlePublishs() {
+    let term_ids = this.handleMultiSelected();
+    this.props.publishs_term(term_ids);
+  }
+
+  handleUnPublishs() {
+    let term_ids = this.handleMultiSelected();
+    this.props.unpublishs_term(term_ids);
+  }
+
+  handleTrashs() {
+    let term_ids = this.handleMultiSelected();
+    this.props.deletes_term(term_ids);
   }
 
   // RENDER
@@ -147,7 +182,7 @@ class TermIndexContainer extends Component {
           <div className="box box-success">
             <div className="box-header">
               <h3 className="box-title">DANH MỤC SẢN PHẨM</h3>
-              <TermTool handleMultiSelected={ this.handleMultiSelected } />   
+              <TermTool handlePublishs={ this.handlePublishs } handleUnPublishs={ this.handleUnPublishs } handleTrashs={ this.handleTrashs }/>   
             </div>
             <br/>
             <div className="box-body table-responsive no-padding">      
@@ -193,6 +228,18 @@ const mapDispatchToProps = (dispatch, props) => {
 
     unpublish_term : term_id => {
       dispatch(unpublish_term_request(term_id));
+    },
+
+    publishs_term : data => {
+      dispatch(publishs_term_request(data));
+    },
+
+    unpublishs_term : data => {
+      dispatch(unpublishs_term_request(data));
+    },
+
+    deletes_term : data => {
+      dispatch(deletes_term_request(data));
     },
 
     fetch_terms : (data) => {

@@ -67,7 +67,7 @@ class TermAdd extends Component {
                                 <FormGroup controlId="term-description">
                                     <Col componentClass={ControlLabel} sm={2}>Mô tả</Col>
                                     <Col sm={10}>
-                                        <FormControl componentClass="textarea" placeholder="Nhập mô tả..." value={form.term_description} onChange={handleChangeEvent} name="term_description" />
+                                        <FormControl componentClass="textarea" bsClass="textarea" placeholder="Nhập mô tả..." value={form.term_description} onChange={handleChangeEvent} name="term_description" />
                                     </Col>
                                 </FormGroup>
 

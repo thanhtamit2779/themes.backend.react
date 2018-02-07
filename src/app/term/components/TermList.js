@@ -46,7 +46,7 @@ class TermList extends Component {
                     <th>TYPE</th>
                     <th>STATUS</th>
                     <th>ACTION</th>
-                    <th style={ {width: '50px'} }><input type="checkbox" className="flat-red" /></th>
+                    <th style={ {width: '50px'} }><input type="checkbox" className="flat-red" id="check-all"/></th>
                 </tr>
             </thead>
         )
@@ -118,7 +118,7 @@ class TermList extends Component {
                             <small className="label bg-red"><i className="fa fa-trash-o"></i></small> 
                         </Button>
                     </td>
-                    <td><input type="checkbox" className="flat-red" ref="term_ids" name="term_ids" value={term.term_id} id={item_id} /></td>
+                    <td><input type="checkbox" className="flat-red term-id is-checked" ref="term_ids" name="term_id" value={term.term_id} id={item_id} /></td>
                 </tr>
             )
         })
