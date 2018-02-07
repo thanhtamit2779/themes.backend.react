@@ -33,9 +33,13 @@ class TermAddContainer extends Component {
         term_status      : 'publish',
         term_type        : TERM_TYPE_DEFAULT,
     };
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.handleChangeEvent = this.handleChangeEvent.bind(this);
+    this.handleSubmit      = this.handleSubmit.bind(this);
+    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
   }
 
-  componentDidMount = () => {
+  componentDidMount(){
     this.props.fetch_quick_view_terms();
   }
 
@@ -45,7 +49,7 @@ class TermAddContainer extends Component {
     notification(message);
   }
 
-  handleChangeEvent = event => {
+  handleChangeEvent(event) {
     var target = event.target;
     var name   = target.name;
     var value  = target.value;
@@ -54,7 +58,7 @@ class TermAddContainer extends Component {
     });
   } 
 
-  handleSubmit = event => {
+  handleSubmit(event) {
     event.preventDefault();
     
     let term = { 

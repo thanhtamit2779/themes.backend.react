@@ -8,7 +8,14 @@ import { Form, Col, FormGroup, FormControl, ControlLabel, Button } from 'react-b
 import { ARRAY_TERM_TYPE } from './../configs/term_type';
 
 class TermAdd extends Component {
-    getTerms = (terms) => {
+
+    constructor(props) {
+        super(props);
+        this.getTerms         = this.getTerms.bind(this);
+        this.getTermType      = this.getTermType.bind(this);
+    }
+
+    getTerms(terms) {
         if( _.isEmpty(terms) === true ) return false;        
         return terms.map( (term, key) => {
             // LẤY DANH SÁCH TERM => KHÔNG LẤY THÔNG BÁO TRẢ VỀ KHI THÊM XÓA SỬA
@@ -20,7 +27,7 @@ class TermAdd extends Component {
         });
     }
 
-    getTermType = () => {
+    getTermType() {
         if(_.isEmpty(ARRAY_TERM_TYPE)) return false;
     
         var result = [];

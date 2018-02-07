@@ -9,20 +9,8 @@ import { Form, Col, FormGroup, FormControl, ControlLabel, Button } from 'react-b
 
 class TermFormFilter extends Component {
 
-  term_type = () => {
-    let term_type    = '';
-
-    if(_.isEmpty(TERM_TYPE) === false) {
-      term_type = _.forIn(TERM_TYPE, function(type_val, type_key) {
-        return (<option value={type_key}>{type_val}</option>);
-      });
-    }
-    
-    return (
-      <React.Fragment>
-          { term_type }
-      </React.Fragment>
-    );
+  constructor(props) {
+    super(props);
   }
 
   render() {

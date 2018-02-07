@@ -35,14 +35,26 @@ class TermIndexContainer extends Component {
       term_status,
       term_type
     };
+    this.handlePagination   = this.handlePagination.bind(this);
+    this.handleChangeEvent  = this.handleChangeEvent.bind(this);
+    this.handleSubmit       = this.handleSubmit.bind(this);
+    this.handleMultiSelected  = this.handleMultiSelected.bind(this);
   }
 
   // FETCH API
   componentDidMount() {
-    this.setState(this.props.fetch_terms({
-      per_page    : per_page,
-      active_page : active_page
-    })) ;
+    this.setState(
+      _.merge(
+        { active_page: this.state.active_page }, 
+        this.props.fetch_terms({
+          per_page    : per_page,
+          page        : 1,
+          term_name: this.state.term_name, 
+          term_type: this.state.term_type, 
+          term_status: this.state.term_status, 
+        })
+      ) 
+    );
   }
 
   // DISPLAY NOTIFICATION
@@ -53,15 +65,23 @@ class TermIndexContainer extends Component {
     notification(message);
 
     if(message.status === 1) { 
-      this.setState(this.props.fetch_terms({
-        per_page    : per_page,
-        active_page : this.state.active_page
-      })) ;
+      this.setState(
+        _.merge(
+          { active_page: this.state.active_page }, 
+          this.props.fetch_terms({
+            per_page    : per_page,
+            page        : this.state.active_page,
+            term_name: this.state.term_name, 
+            term_type: this.state.term_type, 
+            term_status: this.state.term_status, 
+          })
+        )
+      );
     }
   }
 
   // PAGINATION
-  handlePagination = (page) => {
+  handlePagination(page) {
     this.setState(
       _.merge(
         { active_page: page }, 
@@ -77,7 +97,7 @@ class TermIndexContainer extends Component {
   } 
 
   // FILTER
-  handleChangeEvent = event => {
+  handleChangeEvent(event) {
     var target = event.target;
     var name   = target.name;
     var value  = target.value;
@@ -87,7 +107,7 @@ class TermIndexContainer extends Component {
   } 
 
   // SUBMIT FILTER
-  handleSubmit = event => {
+  handleSubmit(event) {
     event.preventDefault();
 
     let terms = this.props.fetch_terms({
@@ -104,6 +124,10 @@ class TermIndexContainer extends Component {
           terms
       ) 
     );
+  }
+
+  handleMultiSelected() {
+    console.log(this.refs);
   }
 
   // RENDER
@@ -123,7 +147,7 @@ class TermIndexContainer extends Component {
           <div className="box box-success">
             <div className="box-header">
               <h3 className="box-title">DANH MỤC SẢN PHẨM</h3>
-              <TermTool />   
+              <TermTool handleMultiSelected={ this.handleMultiSelected } />   
             </div>
             <br/>
             <div className="box-body table-responsive no-padding">      
