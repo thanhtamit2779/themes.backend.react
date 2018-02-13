@@ -6,7 +6,7 @@ import SIDE_BAR from './../config/sidebar';
 
 class SidebarLeft extends Component {  
 
-  get_sidebar = sidebar => {
+  get_sidebar(sidebar) {
       if(sidebar.length === 0) return false;
       return sidebar.map( (item, key) => { 
          return (<React.Fragment key={key}>
@@ -16,12 +16,12 @@ class SidebarLeft extends Component {
       });
   }
 
-  get_group = name  => {
+  get_group(name) {
     if(name.length === 0) return false;
     return <li className="header">{name}</li>  
   } 
   
-  get_children = items => {
+  get_children(items) {
     if(items.length === 0) return false;
 
     return items.map( (item, key) => {
