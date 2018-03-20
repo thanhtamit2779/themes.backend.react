@@ -3,6 +3,7 @@ import React, { Component } from 'react'   ;
 // LIB
 import * as _ from 'lodash';
 import { Form, Col, FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
+import Dropzone from 'react-dropzone'
 
 // CONFIG
 import { ARRAY_TERM_TYPE } from './../configs/term_type';
@@ -42,7 +43,7 @@ class TermAdd extends Component {
     }
     
     render() {
-        let { handleSubmit, form, handleChangeEvent, terms }  = this.props;
+        let { handleSubmit, form, handleChangeEvent, terms, handleChangeFile, handleClick }  = this.props;
     
         return (
             <div className="row">
@@ -51,7 +52,7 @@ class TermAdd extends Component {
                         <div className="box-header with-border">
                             <h3 className="box-title">Thêm danh mục</h3>
                         </div>
-                        <Form horizontal>
+                        <Form horizontal method="post" id="add-term" onSubmit={handleSubmit} encType="multipart/form-data" acceptCharset="utf-8" >
                             <div className="box-body">
                                 {/* TÊN DANH MỤC */}
                                 <FormGroup controlId="term-name">
@@ -60,6 +61,16 @@ class TermAdd extends Component {
                                     </Col>
                                     <Col sm={10}>
                                         <FormControl type="text" placeholder="Nhập tên danh mục..." value={form.term_name} onChange={handleChangeEvent} name="term_name"/>
+                                    </Col>
+                                </FormGroup>
+
+                                {/* HÌNH ẢNH */}
+                                <FormGroup controlId="file">
+                                    <Col componentClass={ControlLabel} sm={2}>
+                                        Hình ảnh
+                                    </Col>
+                                    <Col sm={10}>
+                                        <FormControl type="file" placeholder="Chọn ảnh..." name="userfile"/>
                                     </Col>
                                 </FormGroup>
                                 
@@ -105,7 +116,8 @@ class TermAdd extends Component {
                             </div>
                             <div className="box-footer">
                                 <Button bsStyle="danger">Cancel</Button>
-                                <Button bsStyle="success" bsClass="pull-right btn-success btn" onClick={handleSubmit}>Save</Button>
+                                <input type="submit" value="Submit" className="pull-right btn-success btn" id="submit-form"/>
+                                <input type="hidden" name="term_thumbnail" value="term_thumbnail"/>
                             </div>
                         </Form>
                     </div>

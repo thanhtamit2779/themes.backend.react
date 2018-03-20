@@ -24,7 +24,7 @@ import { fetch_terms,
 } from './../actions/index';
 
 // HELPER
-import notification from './../../../helper/message';
+import notification from './../../../../helper/message';
 
 // DEFINE
 const per_page      = 5;
@@ -67,6 +67,23 @@ class TermIndexContainer extends Component {
         })
       ) 
     );
+
+    $("#check-all").on('ifChanged ifClicked', function (e) {
+      if (this.checked) {
+        $(".is-checked").each(function() {
+            this.checked=true;
+        });
+      } else {
+        $(".is-checked").each(function() {
+            this.checked=false;
+        });
+      }
+    });
+
+    $('.flat-red').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass   : 'iradio_flat-green'
+    });
   }
 
   // DISPLAY NOTIFICATION

@@ -42,6 +42,7 @@ class TermList extends Component {
             <thead>
                 <tr>
                     <th style={ {width: '50px'} }>STT</th>
+                    <th>IMAGE</th>
                     <th>NAME</th>
                     <th>TYPE</th>
                     <th>STATUS</th>
@@ -103,6 +104,7 @@ class TermList extends Component {
             return (
                 <tr key={key}>
                     <td>{ stt++ }</td>
+                    <td><img src={ term.term_thumbnail } className="img-responsive"/></td>
                     <td>{ term.term_name }</td>
                     <td>
                         { term_type }

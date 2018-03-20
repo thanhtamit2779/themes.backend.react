@@ -1,7 +1,7 @@
 import * as TYPE from './../contants/action_type';
 
 // HELPER
-import request_api from './../../../helper/api';
+import request_api from './../../../../helper/api';
 
 /*======================================================================
 | TERM LIST 
@@ -111,7 +111,7 @@ export const publish_term = term_publish => {
 
 export const publish_term_request = (term_id) => {
     return (dispatch) => {
-        return request_api(`term/publish/${term_id}`, null, 'put').then(function(response) {
+        return request_api(`term/publish/${term_id}`, {}, 'put').then(function(response) {
             dispatch(publish_term(response.data)); 
         });
     }
@@ -130,7 +130,7 @@ export const unpublish_term = term_unpublish => {
 
 export const unpublish_term_request = (term_id) => {
     return (dispatch) => {
-        return request_api(`term/unpublish/${term_id}`, null, 'put').then(function(response) {
+        return request_api(`term/unpublish/${term_id}`, {}, 'put').then(function(response) {
             dispatch(unpublish_term(response.data)); 
         });
     }
