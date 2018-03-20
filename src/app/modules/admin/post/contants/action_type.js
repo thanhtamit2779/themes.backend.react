@@ -1,0 +1,10 @@
+export const FETCH_POSTS             = 'FETCH_POSTS';
+export const ADD_POST                = 'ADD_POST';
+export const EDIT_POST               = 'EDIT_POST';
+export const FETCH_QUICK_VIEW_POST   = 'FETCH_QUICK_VIEW_POST';
+export const DELETE_POST             = 'DELETE_POST';
+export const DELETES_POST            = 'DELETES_POST';
+export const PUBLISH_POST            = 'PUBLISH_POST';
+export const UNPUBLISH_POST          = 'UNPUBLISH_POST';
+export const PUBLISHS_POST           = 'PUBLISHS_POST';
+export const UNPUBLISHS_POST         = 'UNPUBLISHS_POST';
