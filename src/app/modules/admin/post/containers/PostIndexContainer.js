@@ -27,7 +27,7 @@ import { fetch_posts,
 import notification from './../../../../helper/message';
 
 // DEFINE
-const per_page      = 20;
+const per_page      = 3;
 const active_page   = 1;
 const keyword       = '';
 const post_title    = '';
@@ -61,9 +61,9 @@ class PostIndexContainer extends Component {
         this.props.fetch_posts({
           total_record    : per_page,
           page            : 1,
-          post_title  : this.state.post_title, 
-          post_type   : this.state.post_type, 
-          post_status : this.state.post_status, 
+          post_title      : this.state.post_title, 
+          post_type       : this.state.post_type, 
+          post_status     : this.state.post_status, 
         })
       ) 
     );
