@@ -128,10 +128,40 @@ export const unpublish_post = post_unpublish => {
     }
 }
 
-export const unpublish_post_request = (post_id) => {
+/*======================================================================
+| POST FEATURED ON 
+| =======================================================================
+*/
+export const featured_on_post = post_featured_on => {
+    return {
+        type : TYPE.FEATURED_ON_POST,
+        post_featured_on
+    }
+}
+
+export const featured_on_post_request = (post_id) => {
     return (dispatch) => {
-        return request_api(`post/unpublish/${post_id}`, {}, 'put').then(function(response) {
-            dispatch(unpublish_post(response.data)); 
+        return request_api(`post/featured_on/${post_id}`, {}, 'put').then(function(response) {
+            dispatch(featured_on_post(response.data)); 
+        });
+    }
+}
+
+/*======================================================================
+| POST FEATURED OFF
+| =======================================================================
+*/
+export const featured_off_post = post_featured_off => {
+    return {
+        type : TYPE.FEATURED_OFF_POST,
+        post_featured_off
+    }
+}
+
+export const featured_off_post_request = (post_id) => {
+    return (dispatch) => {
+        return request_api(`post/featured_off/${post_id}`, {}, 'put').then(function(response) {
+            dispatch(featured_off_post(response.data)); 
         });
     }
 }

@@ -27,11 +27,11 @@ class PostFormFilter extends Component {
               </FormGroup>    
           </Col>
 
-          {/* TYPE */}
+          {/* STATUS */}
           <Col sm={3} xs={12} md={3}>
             <FormGroup>
               <div className="form-line">
-                <FormControl componentClass="select" id="term-status" name="post_status" value={form.post_status} onChange={handleChangeEvent} bsClass="form-control show-tick">
+                <FormControl componentClass="select" id="post-status" name="post_status" value={form.post_status} onChange={handleChangeEvent} bsClass="form-control show-tick">
                   <option value="">--- Tình trạng ---</option>
                   <option value="publish">Hiển thị</option>
                   <option value="unpublish">Ẩn</option>
@@ -40,22 +40,22 @@ class PostFormFilter extends Component {
             </FormGroup> 
           </Col>
 
-          {/* STATUS 
+          {/* STATUS */}
           <Col sm={3} xs={12} md={3}>
             <FormGroup>
               <div className="form-line">
-                <FormControl componentClass="select" id="term-type" name="post_type" value={form.post_type} onChange={handleChangeEvent} bsClass="form-control show-tick">
+                <FormControl componentClass="select" id="post-type" name="post_type" value={form.post_type} onChange={handleChangeEvent} bsClass="form-control show-tick">
                   <option value="">--- Kiểu ---</option>
-                  <option value="theme_cat">Theme</option>
-                  <option value="news_cat">News</option>
+                  <option value="theme_post">Theme</option>
+                  {/*<option value="news_cat">News</option>*/}
                 </FormControl>
               </div>
             </FormGroup>
           </Col>
-          */}
+          
 
           {/* BUTTON SEARCH */}
-          <Col sm={2} xs={12} md={1} bsClass="text-right">
+          <Col sm={2} xs={12} md={2} bsClass="text-right">
             <button type="button" className="btn bg-olive btn-flat" id="search" onClick={handleSubmit}>
                 <i className="fa fa-search"></i>
                 <span> TÌM KIẾM </span>

@@ -6,5 +6,7 @@ export const DELETE_POST             = 'DELETE_POST';
 export const DELETES_POST            = 'DELETES_POST';
 export const PUBLISH_POST            = 'PUBLISH_POST';
 export const UNPUBLISH_POST          = 'UNPUBLISH_POST';
+export const FEATURED_ON_POST        = 'FEATURED_ON_POST';
+export const FEATURED_OFF_POST       = 'FEATURED_OFF_POST';
 export const PUBLISHS_POST           = 'PUBLISHS_POST';
 export const UNPUBLISHS_POST         = 'UNPUBLISHS_POST';

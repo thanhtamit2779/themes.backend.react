@@ -37,6 +37,16 @@ class PostList extends Component {
         this.props.onUnPublish(post_id);
     }
 
+    // FEATURED : 1
+    onFeaturedOn(post_id) {
+        this.props.onFeaturedOn(post_id);
+    }
+
+    // FEATURED : 0
+    onFeaturedOff(post_id) {
+        this.props.onFeaturedOff(post_id);
+    }
+
     loadTableHead() {
         return (
             <thead>
@@ -47,6 +57,8 @@ class PostList extends Component {
                     <th>NGÀY TẠO</th>
                     <th>NGƯỜI TẠO</th>
                     <th>TYPE</th>
+                    <th>LƯỢT XEM</th>
+                    <th>NỔI BẬT</th>
                     <th>STATUS</th>
                     <th>ACTION</th>
                     <th style={ {width: '50px'} }><input type="checkbox" className="flat-red" id="check-all"/></th>
@@ -85,10 +97,17 @@ class PostList extends Component {
         var stt    = 1;
         result = posts.map( (post, key) => {
             if(post.post_status === 'unpublish') {
-                var link_update_status = (<Button id="term-status" bsSize="xsmall" bsStyle="link" onClick={ () => this.onPublish(post.post_id) }><small className="label bg-red">{ post.post_status }</small></Button>); 
+                var link_update_status = (<Button id="post-status" bsSize="xsmall" bsStyle="link" onClick={ () => this.onPublish(post.post_id) }><small className="label bg-red">{ post.post_status }</small></Button>); 
             }
             else if(post.post_status === 'publish') {
-                var link_update_status = (<Button id="term-status" bsSize="xsmall" bsStyle="link" onClick={ () => this.onUnPublish(post.post_id) }><small className="label bg-green">{ post.post_status }</small></Button>); 
+                var link_update_status = (<Button id="post-status" bsSize="xsmall" bsStyle="link" onClick={ () => this.onUnPublish(post.post_id) }><small className="label bg-green">{ post.post_status }</small></Button>); 
+            }
+
+            if(post.post_featured == 0) {
+                var link_update_post_featured = (<Button id="post-featured" bsSize="xsmall" bsStyle="link" onClick={ () => this.onFeaturedOn(post.post_id) }><i class="fa fa-fw fa-star-o"/></Button>); 
+            }
+            else if(post.post_featured == 1) {
+                var link_update_post_featured = (<Button id="post-featured" bsSize="xsmall" bsStyle="link" onClick={ () => this.onFeaturedOff(post.post_id) }><i class="fa fa-fw fa-star"/></Button>); 
             }
 
             let link_edit          = `/post/edit/${post.post_id}`;
@@ -113,6 +132,8 @@ class PostList extends Component {
                     <td>
                         { term_type }
                     </td>
+                    <td>{post.post_viewed}</td>
+                    <td>{ link_update_post_featured }</td>
                     <td>
                         { link_update_status }
                     </td>

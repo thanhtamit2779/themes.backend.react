@@ -20,14 +20,16 @@ import { fetch_posts,
          publish_post_request, 
          unpublish_post_request,
          publishs_post_request, 
-         unpublishs_post_request
+         unpublishs_post_request,
+         featured_on_post_request,
+         featured_off_post_request
 } from './../actions/index';
 
 // HELPER
 import notification from './../../../../helper/message';
 
 // DEFINE
-const per_page      = 3;
+const per_page      = 25;
 const active_page   = 1;
 const keyword       = '';
 const post_title    = '';
@@ -184,7 +186,7 @@ class PostIndexContainer extends Component {
 
   // RENDER
   render() { 
-    let { items, delete_post, fetch_posts, publish_post, unpublish_post } = this.props;
+    let { items, delete_post, fetch_posts, publish_post, unpublish_post, featured_on_post, featured_off_post } = this.props;
     let { active_page } = this.state;
     let form            = this.state;
 
@@ -213,6 +215,8 @@ class PostIndexContainer extends Component {
                 onDelete={delete_post} 
                 onPublish={publish_post}
                 onUnPublish={unpublish_post} 
+                onFeaturedOn={featured_on_post}
+                onFeaturedOff={featured_off_post} 
                 active_page={active_page} 
                 total={total} 
                 total_page={total_page}
@@ -245,6 +249,14 @@ const mapDispatchToProps = (dispatch, props) => {
 
     unpublish_post : post_id => {
       dispatch(unpublish_post_request(post_id));
+    },
+
+    featured_on_post : post_id => {
+      dispatch(featured_on_post_request(post_id));
+    },
+
+    featured_off_post : post_id => {
+      dispatch(featured_off_post_request(post_id));
     },
 
     publishs_post : data => {

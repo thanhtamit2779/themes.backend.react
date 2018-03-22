@@ -35,6 +35,18 @@ const post_index = (state = {
                 items       : [],
             }); 
 
+        case TYPE.FEATURED_ON_POST:
+            return Object.assign({}, state, {
+                notification: action.post_featured_on,
+                items       : [],
+            });
+            
+        case TYPE.FEATURED_OFF_POST:
+            return Object.assign({}, state, {
+                notification: action.post_featured_off,
+                items       : [],
+            });     
+
         case TYPE.PUBLISHS_POST:
             return Object.assign({}, state, {
                 notification: action.post_publishs,
