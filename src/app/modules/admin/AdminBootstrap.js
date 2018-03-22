@@ -15,7 +15,7 @@ import 'react-notifications/lib/notifications.css';
 import './../../../vendor/modules/admin/plugins/bootstrap/dist/css/bootstrap.min.css';
 import './../../../vendor/modules/admin/plugins/font-awesome/css/font-awesome.min.css';
 import './../../../vendor/modules/admin/plugins/Ionicons/css/ionicons.min.css';
-import './../../../vendor/modules/admin/dist/css/AdminLTE.min.css';
+import './../../../vendor/modules/admin/dist/css/AdminLTE.css';
 import './../../../vendor/modules/admin/dist/css/skins/_all-skins.min.css';
 import './../../../vendor/modules/admin/plugins/morris.js/morris.css';
 import './../../../vendor/modules/admin/plugins/jvectormap/jquery-jvectormap.css';

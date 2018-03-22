@@ -9,7 +9,8 @@ import Pagination from "react-js-pagination";
 
 // CONFIG
 import { POST_TYPE } from './../configs/post_type';
-
+import API from './../../../../config/api';
+const themes_admin  = API.admin_url;
 class PostList extends Component {
 
     constructor(props) {
@@ -104,13 +105,13 @@ class PostList extends Component {
             }
 
             if(post.post_featured == 0) {
-                var link_update_post_featured = (<Button id="post-featured" bsSize="xsmall" bsStyle="link" onClick={ () => this.onFeaturedOn(post.post_id) }><i class="fa fa-fw fa-star-o"/></Button>); 
+                var link_update_post_featured = (<Button id="post-featured" bsSize="xsmall" bsStyle="link" onClick={ () => this.onFeaturedOn(post.post_id) }><i className="fa fa-fw fa-star-o"/></Button>); 
             }
             else if(post.post_featured == 1) {
-                var link_update_post_featured = (<Button id="post-featured" bsSize="xsmall" bsStyle="link" onClick={ () => this.onFeaturedOff(post.post_id) }><i class="fa fa-fw fa-star"/></Button>); 
+                var link_update_post_featured = (<Button id="post-featured" bsSize="xsmall" bsStyle="link" onClick={ () => this.onFeaturedOff(post.post_id) }><i className="fa fa-fw fa-star"/></Button>); 
             }
 
-            let link_edit          = `/post/edit/${post.post_id}`;
+            let link_edit          = `${themes_admin}theme/edit/${post.post_id}`;
             let item_id            = `item-${post.post_id}`;
             let item_name          = `items[${post.post_id}]`;
             let term_type          = '';
@@ -138,7 +139,7 @@ class PostList extends Component {
                         { link_update_status }
                     </td>
                     <td>
-                        <NavLink to={ link_edit } className="mar-5">
+                        <NavLink to={ link_edit } className="mar-5" target="_blank">
                             <small className="label bg-green"><i className="fa fa-edit"></i></small>
                         </NavLink>
                         <Button id="delete" bsSize="xsmall" bsStyle="link" onClick={ () => this.onDelete(post.post_id) }>

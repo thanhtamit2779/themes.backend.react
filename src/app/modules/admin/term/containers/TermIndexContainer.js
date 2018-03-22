@@ -27,7 +27,7 @@ import { fetch_terms,
 import notification from './../../../../helper/message';
 
 // DEFINE
-const per_page      = 5;
+const per_page      = 10;
 const active_page   = 1;
 const keyword       = '';
 const term_name     = '';

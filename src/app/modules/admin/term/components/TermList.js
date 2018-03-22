@@ -9,7 +9,8 @@ import Pagination from "react-js-pagination";
 
 // CONFIG
 import { TERM_TYPE } from './../configs/term_type';
-
+import API from './../../../../config/api';
+const themes_admin  = API.admin_url;
 class TermList extends Component {
 
     constructor(props) {
@@ -89,7 +90,7 @@ class TermList extends Component {
                 var link_update_status = (<Button id="term-status" bsSize="xsmall" bsStyle="link" onClick={ () => this.onUnPublish(term.term_id) }><small className="label bg-green">{ term.term_status }</small></Button>); 
             }
 
-            let link_edit          = `/term/edit/${term.term_id}`;
+            let link_edit          = `${themes_admin}term/edit/${term.term_id}`;
             let item_id            = `item-${term.term_id}`;
             let item_name          = `items[${term.term_id}]`;
             let term_type          = '';
@@ -113,7 +114,7 @@ class TermList extends Component {
                         { link_update_status }
                     </td>
                     <td>
-                        <NavLink to={ link_edit } className="mar-5">
+                        <NavLink to={ link_edit } className="mar-5" target="_blank">
                             <small className="label bg-green"><i className="fa fa-edit"></i></small>
                         </NavLink>
                         <Button id="delete" bsSize="xsmall" bsStyle="link" onClick={ () => this.onDelete(term.term_id) }>

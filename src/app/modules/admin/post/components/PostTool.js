@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
 import { NavLink } from 'react-router-dom' ;
-
 import { Button } from 'react-bootstrap';
 
+import API from './../../../../config/api';
+const themes_admin  = API.admin_url;
 class PostTool extends Component {
     constructor(props) {
         super(props);
@@ -16,7 +17,7 @@ class PostTool extends Component {
             <div className="box-tools">
                 <div className="col-sm-12 text-right">
                     { /* THÊM */ }                   
-                    <NavLink to='/term/add' className="btn btn-primary btn-flat btn-sm" id="add">
+                    <NavLink to={themes_admin + 'theme/edit'} className="btn btn-primary btn-flat btn-sm" id="add" target="_blank">
                         <i className="fa fa-plus"></i><span> THÊM </span>
                     </NavLink>
                     
