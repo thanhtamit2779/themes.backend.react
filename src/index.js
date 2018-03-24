@@ -6,9 +6,6 @@ import {
     Route
 } from 'react-router-dom';
 
-/*  CSS */
-import App from './App';
-
 // REACT - REDUX
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';

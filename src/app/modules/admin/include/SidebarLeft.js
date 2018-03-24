@@ -58,7 +58,7 @@ class SidebarLeft extends Component {
                 
                 {/* Menu */}
                 <ul className="sidebar-menu" data-widget="tree">
-                    <li class="header">CÀI ĐẶT</li>
+                    <li className="header">CÀI ĐẶT</li>
                     <li className='item'><a href={theme_url + 'option/media'} target="_blank"><i className="fa fa-file-image-o" aria-hidden="true"/> HÌNH ẢNH</a></li>
                     <li className='item'><a href={theme_url + 'option/email'} target="_blank"><i className="fa fa-envelope-o" aria-hidden="true"/> EMAIL</a></li>
                     {this.get_sidebar(SIDE_BAR)}
