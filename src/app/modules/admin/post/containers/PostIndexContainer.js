@@ -35,6 +35,9 @@ const keyword       = '';
 const post_title    = '';
 const post_status   = '';
 const post_type     = 'theme_post';
+const resize        = 1;
+const resize_width  = 90;
+const resize_height = 60;
 
 class PostIndexContainer extends Component {
 
@@ -44,7 +47,10 @@ class PostIndexContainer extends Component {
       active_page,
       post_title,
       post_status,
-      post_type
+      post_type,
+      resize,
+      resize_width,
+      resize_height
     };
     this.handlePagination     = this.handlePagination.bind(this);
     this.handleChangeEvent    = this.handleChangeEvent.bind(this);
@@ -66,6 +72,9 @@ class PostIndexContainer extends Component {
           post_title      : this.state.post_title, 
           post_type       : this.state.post_type, 
           post_status     : this.state.post_status, 
+          resize : this.state.resize,
+          resize_width: this.state.resize_width,
+          resize_height: this.state.resize_height
         })
       ) 
     );
@@ -105,6 +114,9 @@ class PostIndexContainer extends Component {
             post_title      : this.state.post_title, 
             post_type       : this.state.post_type, 
             post_status     : this.state.post_status, 
+            resize : this.state.resize,
+            resize_width: this.state.resize_width,
+            resize_height: this.state.resize_height
           })
         )
       );
@@ -122,6 +134,9 @@ class PostIndexContainer extends Component {
           post_title      : this.state.post_title, 
           post_type       : this.state.post_type, 
           post_status     : this.state.post_status, 
+          resize : this.state.resize,
+          resize_width: this.state.resize_width,
+          resize_height: this.state.resize_height
         })
       ) 
     );
@@ -147,6 +162,9 @@ class PostIndexContainer extends Component {
       post_title: this.state.post_title, 
       post_type: this.state.post_type, 
       post_status: this.state.post_status, 
+      resize : this.state.resize,
+      resize_width: this.state.resize_width,
+      resize_height: this.state.resize_height
     });
 
     this.setState(
