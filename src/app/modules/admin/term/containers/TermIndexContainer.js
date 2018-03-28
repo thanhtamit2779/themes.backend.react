@@ -27,12 +27,15 @@ import { fetch_terms,
 import notification from './../../../../helper/message';
 
 // DEFINE
-const per_page      = 10;
+const per_page      = 5;
 const active_page   = 1;
 const keyword       = '';
 const term_name     = '';
 const term_status   = '';
 const term_type     = '';
+const resize        = 1;
+const resize_width  = 90;
+const resize_height = 60;
 
 class TermIndexContainer extends Component {
 
@@ -42,7 +45,10 @@ class TermIndexContainer extends Component {
       active_page,
       term_name,
       term_status,
-      term_type
+      term_type,
+      resize,
+      resize_width,
+      resize_height
     };
     this.handlePagination     = this.handlePagination.bind(this);
     this.handleChangeEvent    = this.handleChangeEvent.bind(this);
@@ -64,6 +70,9 @@ class TermIndexContainer extends Component {
           term_name: this.state.term_name, 
           term_type: this.state.term_type, 
           term_status: this.state.term_status, 
+          resize : this.state.resize,
+          resize_width: this.state.resize_width,
+          resize_height: this.state.resize_height
         })
       ) 
     );
@@ -103,6 +112,9 @@ class TermIndexContainer extends Component {
             term_name: this.state.term_name, 
             term_type: this.state.term_type, 
             term_status: this.state.term_status, 
+            resize : this.state.resize,
+            resize_width: this.state.resize_width,
+            resize_height: this.state.resize_height
           })
         )
       );
@@ -120,6 +132,9 @@ class TermIndexContainer extends Component {
           term_name: this.state.term_name, 
           term_type: this.state.term_type, 
           term_status: this.state.term_status, 
+          resize : this.state.resize,
+          resize_width: this.state.resize_width,
+          resize_height: this.state.resize_height
         })
       ) 
     );
