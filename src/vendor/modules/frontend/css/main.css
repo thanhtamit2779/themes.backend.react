@@ -607,7 +607,6 @@ iframe {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  height: 80px;
   background-color: white;
   justify-content: center;
   align-items: center;
