@@ -1,15 +1,15 @@
-var webpack = require('webpack');
+var webpack           = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var DashboardPlugin = require('webpack-dashboard/plugin');
-var path = require("path");
+var DashboardPlugin   = require('webpack-dashboard/plugin');
+var path              = require("path");
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   resolve: {
-    alias: {
-    },
+    alias: {},
+
     extensions: ['.js', '.jsx', '.scss', 'css']
- },
+  },
 
   entry: './src/index.js',
 
@@ -29,15 +29,16 @@ module.exports = {
     inline: true,
   },
 
+  externals: {},
+
+  devtool: 'eval-source-map',
+
   plugins: [
-    //new webpack.NoEmitOnErrorsPlugin(),
-    //new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new ExtractTextPlugin({
       filename: 'build.min.css',
       allChunks: true,
     }),
-    //new DashboardPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       files: {

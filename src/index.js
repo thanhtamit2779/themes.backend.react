@@ -19,15 +19,21 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import term_index from './app/modules/admin/term/reducers/index';
 import post_index from './app/modules/admin/post/reducers/index';
 import home_banner from './app/modules/frontend/homepage/reducers/home_banner';
+import home_theme_featured from './app/modules/frontend/homepage/reducers/home_theme_featured';
+import home_theme_latest from './app/modules/frontend/homepage/reducers/home_theme_latest';
+import home_theme_viewed from './app/modules/frontend/homepage/reducers/home_theme_viewed';
 
 /* INCLUDE */
-import AdminBootstrap from './app/modules/admin/AdminBootstrap';
+//import AdminBootstrap from './app/modules/admin/AdminBootstrap';
 import FrontendBootstrap from './app/modules/frontend/FrontendBootstrap';
 
 const rootReducer = combineReducers({
     term_index,
     post_index,
-    home_banner
+    home_banner,
+    home_theme_featured,
+    home_theme_latest,
+    home_theme_viewed
 });
 
 const loggerMiddleware = createLogger();

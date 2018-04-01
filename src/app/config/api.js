@@ -1,5 +1,5 @@
 const API = { 
-    url         : 'http://localhost/webdoctor.vn/themes/api/',
-    admin_url   : 'http://localhost/webdoctor.vn/themes/admin/'
+    url         : 'http://themes.dev.vn/api/',
+    admin_url   : 'http://themes.dev.vn/admin/'
 };
 export default API;
