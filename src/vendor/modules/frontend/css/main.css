@@ -2466,3 +2466,36 @@ input.num-product::-webkit-inner-spin-button {
     display: none;
 }
 
+.owl-carousel .owl-prev, 
+.owl-carousel .owl-next {
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: 70px !important;
+  color: #cccccc !important;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.owl-carousel .owl-prev {
+  position: absolute;
+  top: 40%;
+  left:-30px;
+}
+
+.owl-carousel .owl-next {
+  position: absolute;
+  top: 40%;
+  right:-30px;
+}
+
+.owl-carousel .owl-nav [class*=owl-]:hover {
+  background: none !important;
+  color: #666666 !important;
+  text-decoration: none;
+}
+

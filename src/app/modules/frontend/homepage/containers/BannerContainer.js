@@ -14,7 +14,7 @@ class BannerContainer extends Component {
     // FETCH API
     componentDidMount() {
       this.props.fetch_banners({
-        per_page     : 6,
+        per_page     : 3,
         resize       : 1,
         resize_width : 370,
         resize_height : 340
