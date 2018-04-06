@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 
 import * as _ from 'lodash';
 
+import { NavLink } from 'react-router-dom';
+
 class ThemeViewedCarousel extends Component {
     constructor(props) {
         super(props);
@@ -36,8 +38,9 @@ class ThemeViewedCarousel extends Component {
     load(posts) {
         if (_.isEmpty(posts)) 
             return false;
-        
+            
         return posts.map((post, key) => {
+            let link_detail = `chi-tiet/${post.post_slug}/${post.post_id}`;
             return (
                 <div className="item" key={key}>
                     <div className="block2">
@@ -53,9 +56,9 @@ class ThemeViewedCarousel extends Component {
                             </div>
                         </div>
                         <div className="block2-txt p-t-20 text-center">
-                            <a href={post.post_thumb} className="text-center block2-name dis-block s-text3 p-b-5">
+                            <NavLink to={link_detail} className="text-center block2-name dis-block s-text3 p-b-5">
                                 {post.post_title}
-                            </a>
+                            </NavLink>
                             <span className="block2-price m-text6 p-r-5">
                                 {post.post_price} VNĐ
                             </span>

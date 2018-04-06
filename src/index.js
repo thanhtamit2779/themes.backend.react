@@ -18,10 +18,12 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 // REDUCERS ADMIN
 import term_index from './app/modules/admin/term/reducers/index';
 import post_index from './app/modules/admin/post/reducers/index';
+
 import home_banner from './app/modules/frontend/homepage/reducers/home_banner';
 import home_theme_featured from './app/modules/frontend/homepage/reducers/home_theme_featured';
 import home_theme_latest from './app/modules/frontend/homepage/reducers/home_theme_latest';
 import home_theme_viewed from './app/modules/frontend/homepage/reducers/home_theme_viewed';
+import theme_detail from './app/modules/frontend/product/reducers/theme_detail';
 
 /* INCLUDE */
 //import AdminBootstrap from './app/modules/admin/AdminBootstrap';
@@ -33,7 +35,8 @@ const rootReducer = combineReducers({
     home_banner,
     home_theme_featured,
     home_theme_latest,
-    home_theme_viewed
+    home_theme_viewed,
+    theme_detail
 });
 
 const loggerMiddleware = createLogger();

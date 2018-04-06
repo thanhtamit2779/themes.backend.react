@@ -40,7 +40,7 @@ class ThemeLatestCarousel extends Component {
             return false;
         
         return posts.map((post, key) => {
-            let link_detail = `/${post.post_slug}/${post.post_id}`;
+            let link_detail = `chi-tiet/${post.post_slug}/${post.post_id}`;
             return (
                 <div className="item" key={key}>
                     <div className="block2">
