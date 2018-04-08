@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-
-// REDUX
 import { connect } from 'react-redux';
-
 import { fetch_theme_detail_request } from './../actions/index';
+
+import ThemeDetail from './../components/ThemeDetail';
 
 class ThemeDetailContainer extends Component {
     constructor(props) {
@@ -17,9 +16,7 @@ class ThemeDetailContainer extends Component {
     
     render() {
         let { detail } = this.props;
-        return (
-            <h1>Theme Detail Container</h1>
-        );
+        return (<ThemeDetail detail={detail}/>);
     }
 }
 

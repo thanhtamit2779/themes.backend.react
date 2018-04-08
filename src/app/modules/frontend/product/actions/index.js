@@ -17,7 +17,7 @@ export const get_theme_detail = theme_detail => {
 export const fetch_theme_detail_request = (theme_id) => {
     return (dispatch) => {
         return request_api(`post/detail/${theme_id}`, {}, 'put').then(function(response) {
-            dispatch(get_theme_detail(response.data)); 
+            dispatch(get_theme_detail(response.data.data)); 
         });
     }
 }
