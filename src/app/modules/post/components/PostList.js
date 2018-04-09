@@ -27,7 +27,19 @@ class PostList extends Component {
         $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
             checkboxClass: 'icheckbox_flat-green',
             radioClass   : 'iradio_flat-green'
-        })    
+        });
+
+        $("#check-all").on('change clicked', function (e) {
+            if (this.checked) {
+              $(".is-checked").each(function() {
+                  this.checked=true;
+              });
+            } else {
+              $(".is-checked").each(function() {
+                  this.checked=false;
+              });
+            }
+        });
     }
 
     // DELETE

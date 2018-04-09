@@ -16,27 +16,15 @@ import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 // REDUCERS ADMIN
-import term_index from './app/modules/admin/term/reducers/index';
-import post_index from './app/modules/admin/post/reducers/index';
-
-import home_banner from './app/modules/frontend/homepage/reducers/home_banner';
-import home_theme_featured from './app/modules/frontend/homepage/reducers/home_theme_featured';
-import home_theme_latest from './app/modules/frontend/homepage/reducers/home_theme_latest';
-import home_theme_viewed from './app/modules/frontend/homepage/reducers/home_theme_viewed';
-import theme_detail from './app/modules/frontend/product/reducers/theme_detail';
+import term_index from './app/modules/term/reducers/index';
+import post_index from './app/modules/post/reducers/index';
 
 /* INCLUDE */
-//import AdminBootstrap from './app/modules/admin/AdminBootstrap';
-import FrontendBootstrap from './app/modules/frontend/FrontendBootstrap';
+import AdminBootstrap from './app/modules/AdminBootstrap';
 
 const rootReducer = combineReducers({
     term_index,
-    post_index,
-    home_banner,
-    home_theme_featured,
-    home_theme_latest,
-    home_theme_viewed,
-    theme_detail
+    post_index
 });
 
 const loggerMiddleware = createLogger();
@@ -54,8 +42,7 @@ const store = createStore(
 ReactDOM.render(
     <Provider store={store}>
         <Router>
-            {/* <Route component={AdminBootstrap} path="/admin"/> */}
-            <Route component={FrontendBootstrap} path="/"/>
+            <Route component={AdminBootstrap} path="/"/>
         </Router>
     </Provider>, 
     document.getElementById('root')

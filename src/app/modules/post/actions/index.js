@@ -22,44 +22,6 @@ export const fetch_posts = (data) => {
     }  
 }
 
-/*=======================================================================
-| POST QUICK VIEW 
-| =======================================================================
-*/
-// export const quick_view_terms = (posts) => {
-//     return {
-//         type : TYPE.FETCH_QUICK_VIEW_POST,
-//         posts
-//     }
-// }
-
-// export const fetch_quick_view_terms = () => {
-//     return (dispatch) => {
-//         return request_api('post/quickview').then(response => {
-//             dispatch(quick_view_terms(response.data.data));
-//         });
-//     }  
-// }
-
-/*======================================================================
-| POST ADD 
-| =======================================================================
-*/
-// export const add_term = term_add => {
-//     return {
-//         type : TYPE.ADD_TERM,
-//         term_add
-//     }
-// }
-
-// export const add_term_request = (term) => {
-//     return (dispatch) => {
-//         return request_api('post/form', term).then(function(response) {
-//             return dispatch(add_term(response.data)); 
-//         });
-//     }
-// }
-
 /*======================================================================
 | POST DELETE 
 | =======================================================================

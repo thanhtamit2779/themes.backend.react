@@ -88,11 +88,6 @@ class TermIndexContainer extends Component {
         });
       }
     });
-
-    $('.flat-red').iCheck({
-      checkboxClass: 'icheckbox_flat-green',
-      radioClass   : 'iradio_flat-green'
-    });
   }
 
   // DISPLAY NOTIFICATION

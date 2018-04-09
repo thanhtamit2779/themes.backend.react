@@ -23,8 +23,6 @@ import './../../vendor/plugins/iCheck/all.css';
 import $ from 'jquery';
 window.jQuery = $;
 import './../../vendor/plugins/jquery-ui/jquery-ui.min.js';
-import './../../vendor/plugins/raphael/raphael.min.js';
-import './../../vendor/plugins/morris.js/morris.min.js';
 import './../../vendor/plugins/jquery-sparkline/dist/jquery.sparkline.min.js';
 import './../../vendor/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js';
 import './../../vendor/plugins/jvectormap/jquery-jvectormap-world-mill-en.js';

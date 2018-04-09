@@ -90,12 +90,21 @@ class PostIndexContainer extends Component {
         });
       }
     });
-
-    $('.flat-red').iCheck({
-      checkboxClass: 'icheckbox_flat-green',
-      radioClass   : 'iradio_flat-green'
-    });
   }
+
+  componentDidUpdate() {
+    $("#check-all").on('ifChanged ifClicked', function (e) {
+        if (this.checked) {
+          $(".is-checked").each(function() {
+              this.checked=true; 
+          });
+        } else {
+          $(".is-checked").each(function() {
+              this.checked=false;
+          });
+        }
+    });
+}
 
   // DISPLAY NOTIFICATION
   componentWillReceiveProps(nextProps) {
