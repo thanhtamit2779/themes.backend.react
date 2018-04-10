@@ -78,18 +78,6 @@ class PostIndexContainer extends Component {
         })
       ) 
     );
-
-    $("#check-all").on('ifChanged ifClicked', function (e) {
-      if (this.checked) {
-        $(".is-checked").each(function() {
-            this.checked=true;
-        });
-      } else {
-        $(".is-checked").each(function() {
-            this.checked=false;
-        });
-      }
-    });
   }
 
   componentDidUpdate() {

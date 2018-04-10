@@ -83,10 +83,17 @@ export const publish_post_request = (post_id) => {
 | POST UNPUBLISH 
 | =======================================================================
 */
-export const unpublish_post = post_unpublish => {
+export const unpublish_post = post_unpublish => {;
     return {
         type : TYPE.UNPUBLISH_POST,
         post_unpublish
+    }
+}
+export const unpublish_post_request = (post_id) => {
+    return (dispatch) => {
+        return request_api(`post/unpublish/${post_id}`, {}, 'put').then(function(response) {
+            dispatch(unpublish_post(response.data)); 
+        });
     }
 }
 
